@@ -50,13 +50,13 @@ class Api {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    print('url  : $url with body $body  and token $token');
+
+    print('url = $url body = $body token = $token ');
     http.Response response =
-        await http.post(Uri.parse(url), body: body, headers: headers);
+        await http.put(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
-      print('${jsonDecode(response.body)}');
-
+      print(data);
       return data;
     } else {
       throw Exception(

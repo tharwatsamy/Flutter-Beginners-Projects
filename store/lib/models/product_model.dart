@@ -1,5 +1,5 @@
 class ProductModel {
-  final int id;
+  final dynamic id;
   final String title;
   final dynamic price;
   final String description;
@@ -17,7 +17,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(jsonData) {
     return ProductModel(
-        id: jsonData['id'],
+        id:jsonData['id'],
         title: jsonData['title'],
         category: jsonData['category'],
         price: jsonData['price'],

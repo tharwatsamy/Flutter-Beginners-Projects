@@ -6,8 +6,6 @@ import 'package:store/widgets/custom_button.dart';
 import 'package:store/widgets/custom_text_field.dart';
 
 class UpdateProductPage extends StatefulWidget {
-  UpdateProductPage({Key? key}) : super(key: key);
-
   static String id = 'update product';
 
   @override
@@ -15,31 +13,29 @@ class UpdateProductPage extends StatefulWidget {
 }
 
 class _UpdateProductPageState extends State<UpdateProductPage> {
-  bool isLoading = false;
-
   String? productName, desc, image;
 
   String? price;
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     ProductModel product =
         ModalRoute.of(context)!.settings.arguments as ProductModel;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Update Product',
-          style: TextStyle(
-            color: Colors.black,
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Update Product',
+            style: TextStyle(
+              color: Colors.black,
+            ),
           ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: true,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: ModalProgressHUD(
-        inAsyncCall: isLoading,
-        child: Padding(
+        body: Padding(
           padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Column(
@@ -88,17 +84,17 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                 CustomButon(
                   text: 'Update',
                   onTap: () async {
+                    isLoading = true;
+                    setState(() {});
                     try {
-                      isLoading = true;
-                      setState(() {});
                       await updateProduct(product);
-                      isLoading = false;
-                      setState(() {});
+
+                      print('success');
                     } catch (e) {
-                      isLoading = false;
-                      setState(() {});
-                      print(e);
+                      print(e.toString());
                     }
+                    isLoading = false;
+                    setState(() {});
                   },
                 ),
               ],
@@ -111,7 +107,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
 
   Future<void> updateProduct(ProductModel product) async {
     await UpdateProductService().updateProduct(
-      id: product.id.toString(),
+        id: product.id,
         title: productName == null ? product.title : productName!,
         price: price == null ? product.price.toString() : price!,
         desc: desc == null ? product.description : desc!,
