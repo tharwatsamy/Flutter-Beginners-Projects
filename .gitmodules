@@ -1,0 +1,3 @@
+[submodule "tunes_play_app"]
+	path = tunes_play_app
+	url = https://github.com/tharwatsamy/tune_player_app_setup
