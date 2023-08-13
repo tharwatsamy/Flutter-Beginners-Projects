@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:toku/components/list_item.dart';
 import 'package:toku/models/item.dart';
 
-import '../components/phrase_item.dart';
+class FamilyMembersPage extends StatelessWidget {
+  const FamilyMembersPage({Key? key}) : super(key: key);
 
-class PhrasesPage extends StatelessWidget {
-  const PhrasesPage({Key? key}) : super(key: key);
-
-  final List<ItemModel> phrasesList = const [
+  final List<ItemModel> numbers = const [
     ItemModel(
-      sound: 'sounds/phrases/are_you_coming.wav',
+      sound: 'sounds/family_members/father.wav',
       jpName: 'chich',
-      enName: 'Are you coming',
+      enName: 'father',
+      image: 'assets/images/family_members/family_father.png',
     ),
     ItemModel(
       sound: 'sounds/numbers/number_two_sound.mp3',
       jpName: 'Ni',
       enName: 'two',
+      image: 'assets/images/numbers/number_two.png',
     ),
     ItemModel(
       sound: 'sounds/numbers/number_one_sound.mp3',
       jpName: 'San',
       enName: 'three',
+      image: 'assets/images/numbers/number_three.png',
     ),
     ItemModel(
       sound: 'sounds/numbers/number_one_sound.mp3',
       jpName: 'Shi',
       enName: 'four',
+      image: 'assets/images/numbers/number_four.png',
     ),
     ItemModel(
       sound: 'sounds/numbers/number_one_sound.mp3',
@@ -69,15 +72,15 @@ class PhrasesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Phrases'),
+        title: const Text('Family Members'),
         backgroundColor: const Color(0xff46322B),
       ),
       body: ListView.builder(
-        itemCount: phrasesList.length,
+        itemCount: numbers.length,
         itemBuilder: (context, index) {
-          return PhrasesItem(
-            color: const Color(0xff50ADC7),
-            item: phrasesList[index],
+          return ListItem(
+            color: const Color(0xff558B37),
+            item: numbers[index],
           );
         },
       ),

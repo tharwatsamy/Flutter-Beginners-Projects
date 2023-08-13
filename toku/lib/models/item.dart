@@ -1,13 +1,18 @@
-import 'package:flutter/foundation.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-class Item {
+class ItemModel {
   final String sound;
   final String? image;
   final String jpName;
   final String enName;
-  const Item(
+  const ItemModel(
       {required this.sound,
-      @required this.image,
+      this.image,
       required this.jpName,
       required this.enName});
+
+  playSound() {
+    final player = AudioPlayer();
+    player.play(AssetSource(sound));
+  }
 }
