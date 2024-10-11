@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   http: ^0.13.4
-  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  modal_progress_hud_nsn: ^0.5.1
 
   font_awesome_flutter: ^9.2.0
 
